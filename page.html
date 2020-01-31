@@ -1,0 +1,36 @@
+<!doctype html>
+<meta charset="utf-8">
+<script src="jquery/jquery.js"></script>
+
+<body>
+
+  Launch ./server.js and open page localhost:3000
+  <button>Get Data</button>
+
+  <pre>  
+    <code>Result:</code>
+  </pre>
+
+<script>
+
+//const btn = document.querySelector('button');
+
+$('button').on('click',getData);
+
+function getData(e){
+    $.ajax({
+        url : '/users',
+        method : 'GET',
+        success : function(data){
+            console.log(data);
+            $('code').append(JSON.stringify(data,null,2))
+        },
+
+        error: function(err){
+            console.log('Failed');
+            $('code').append(err)
+        }
+    });
+}
+
+</script>
